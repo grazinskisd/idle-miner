@@ -24,14 +24,14 @@ namespace IdleMiner
                 return MoveDestinations[_destinationIndex];
             }
         }
-        
+
         void Start()
         {
             _state = Move;
             _startLocation = transform.position;
             _destinationIndex = 0;
         }
-        
+
         void Update()
         {
             _state();
