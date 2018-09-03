@@ -6,8 +6,8 @@ namespace IdleMiner
 {
     public class Mineshaft : MonoBehaviour
     {
-        public CollectionDestination CollectionDestination;
-        public Deposit DepositDestination;
+        public Destination CollectionDestination;
+        public Destination DepositDestination;
         public Parameters Parameters;
         public Miner Miner;
         public Button LevelupButton;

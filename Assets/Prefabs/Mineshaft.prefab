@@ -159,7 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224894272159887648}
   - component: {fileID: 222306716501660962}
-  - component: {fileID: 114362672472252240}
+  - component: {fileID: 114300206030566266}
   m_Layer: 5
   m_Name: DepositLocation
   m_TagString: Untagged
@@ -194,7 +194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224131938640270690}
   - component: {fileID: 222575352366016302}
-  - component: {fileID: 114497008405993822}
+  - component: {fileID: 114096547144357774}
   m_Layer: 5
   m_Name: MiningLocation
   m_TagString: Untagged
@@ -202,6 +202,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114096547144357774
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1739392451006622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5edefc6947340b44be842a796bc5f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loadDisplay: {fileID: 0}
 --- !u!114 &114292054759487026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,6 +255,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114300206030566266
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1626384203648866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2cce482f2741b4c964df2031555baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loadDisplay: {fileID: 114309369030058482}
 --- !u!114 &114309369030058482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -276,18 +300,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 0
---- !u!114 &114362672472252240
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1626384203648866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20522be9fe411b844bd0500f5ae41524, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _loadDisplay: {fileID: 114309369030058482}
 --- !u!114 &114433448321484432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -342,17 +354,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114497008405993822
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1739392451006622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d971b04588a857a43b5a359e52b31706, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114553899535327712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -364,8 +365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 142aaa0942a33544eb86dba7241a912e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollectionDestination: {fileID: 114497008405993822}
-  DepositDestination: {fileID: 114362672472252240}
+  CollectionDestination: {fileID: 114096547144357774}
+  DepositDestination: {fileID: 114300206030566266}
   Parameters: {fileID: 11400000, guid: 169c11d3c2761454089c32e5031a9be9, type: 2}
   Miner: {fileID: 114790537168870542}
   LevelupButton: {fileID: 114292054759487026}
@@ -495,8 +496,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efad753b3e846824e8fc37401cd3f7d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollectionDestination: {fileID: 114497008405993822}
-  DepositDestination: {fileID: 114362672472252240}
+  CollectionDestinations:
+  - {fileID: 114096547144357774}
+  DepositDestination: {fileID: 114300206030566266}
   Parameters: {fileID: 11400000, guid: 169c11d3c2761454089c32e5031a9be9, type: 2}
 --- !u!114 &114831352138180516
 MonoBehaviour:
