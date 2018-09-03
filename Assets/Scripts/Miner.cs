@@ -21,7 +21,7 @@ namespace IdleMiner
         void Start()
         {
             _state = Move;
-            _startLocation = transform.position;
+            _startLocation = transform.localPosition;
             _currentDestination = CollectionDestination;
         }
 
@@ -33,11 +33,11 @@ namespace IdleMiner
         private void Move()
         {
             _elapsedTime += Time.deltaTime;
-            transform.position = NextPosition();
-            if (transform.position == _currentDestination.Position)
+            transform.localPosition = NextPosition();
+            if (transform.localPosition == _currentDestination.Position)
             {
                 _elapsedTime = 0;
-                _startLocation = transform.position;
+                _startLocation = transform.localPosition;
                 if (_currentDestination is CollectionDestination)
                 {
                     _state = Collect;

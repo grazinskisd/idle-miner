@@ -8,7 +8,7 @@ namespace IdleMiner
         {
             get
             {
-                return transform.position;
+                return transform.localPosition;
             }
         }
     }
