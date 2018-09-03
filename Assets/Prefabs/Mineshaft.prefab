@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224207380181682248}
   - component: {fileID: 222502224813008020}
   - component: {fileID: 114472562944867252}
+  - component: {fileID: 114147969828595626}
   m_Layer: 5
   m_Name: Box
   m_TagString: Untagged
@@ -38,6 +39,7 @@ GameObject:
   - component: {fileID: 224970992345360300}
   - component: {fileID: 222950131939181240}
   - component: {fileID: 114842133622850066}
+  - component: {fileID: 114361577717469258}
   m_Layer: 5
   m_Name: Mineral
   m_TagString: Untagged
@@ -194,7 +196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224131938640270690}
   - component: {fileID: 222575352366016302}
-  - component: {fileID: 114096547144357774}
+  - component: {fileID: 114081905569210252}
   m_Layer: 5
   m_Name: MiningLocation
   m_TagString: Untagged
@@ -202,7 +204,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114096547144357774
+--- !u!114 &114081905569210252
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,10 +212,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1739392451006622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5edefc6947340b44be842a796bc5f78, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c2cce482f2741b4c964df2031555baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadDisplay: {fileID: 0}
+  Storage: {fileID: 114361577717469258}
+--- !u!114 &114147969828595626
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1100482444369418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20522be9fe411b844bd0500f5ae41524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loadDisplay: {fileID: 114309369030058482}
 --- !u!114 &114292054759487026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -266,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2cce482f2741b4c964df2031555baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadDisplay: {fileID: 114309369030058482}
+  Storage: {fileID: 114147969828595626}
 --- !u!114 &114309369030058482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -300,6 +314,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 0
+--- !u!114 &114361577717469258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1190558186712292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5edefc6947340b44be842a796bc5f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loadDisplay: {fileID: 0}
 --- !u!114 &114433448321484432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -365,7 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 142aaa0942a33544eb86dba7241a912e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollectionDestination: {fileID: 114096547144357774}
+  CollectionDestination: {fileID: 114081905569210252}
   DepositDestination: {fileID: 114300206030566266}
   Parameters: {fileID: 11400000, guid: 169c11d3c2761454089c32e5031a9be9, type: 2}
   Miner: {fileID: 114790537168870542}
@@ -497,7 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollectionDestinations:
-  - {fileID: 114096547144357774}
+  - {fileID: 114081905569210252}
   DepositDestination: {fileID: 114300206030566266}
   Parameters: {fileID: 11400000, guid: 169c11d3c2761454089c32e5031a9be9, type: 2}
 --- !u!114 &114831352138180516
