@@ -11,7 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c92b99e1cd6004893792f188767055, type: 3}
   m_Name: SimpleParameters
   m_EditorClassIdentifier: 
-  Miners: 0
-  WalkingSpeed: 1
-  MiningSpeed: 1
-  WalkerCapacity: 1
+  WarehouseParams: {fileID: 0}
+  LiftParams: {fileID: 0}
+  MineshaftParams: {fileID: 11400000, guid: 169c11d3c2761454089c32e5031a9be9, type: 2}

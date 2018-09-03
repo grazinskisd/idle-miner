@@ -2,26 +2,26 @@
 
 namespace IdleMiner
 {
-    public class Mine : MonoBehaviour
+    public delegate void MinerStateFunction();
+
+    public class Miner: MonoBehaviour
     {
         public CollectionDestination CollectionDestination;
         public Deposit DepositDestination;
-        public Transform Miner;
-        public MineParameters Parameters;
+        public Parameters Parameters;
 
         private int _load;
         private Vector3 _startLocation;
         private float _elapsedTime;
 
-        private delegate void StateFunction();
-        private StateFunction _state;
+        private MinerStateFunction _state;
 
         private Destination _currentDestination;
 
         void Start()
         {
             _state = Move;
-            _startLocation = Miner.position;
+            _startLocation = transform.position;
             _currentDestination = CollectionDestination;
         }
 
@@ -33,11 +33,11 @@ namespace IdleMiner
         private void Move()
         {
             _elapsedTime += Time.deltaTime;
-            Miner.position = Vector3.Lerp(_startLocation, _currentDestination.Position, _elapsedTime * Parameters.WalkingSpeed);
-            if (Miner.position == _currentDestination.Position)
+            transform.position = NextPosition();
+            if (transform.position == _currentDestination.Position)
             {
                 _elapsedTime = 0;
-                _startLocation = Miner.position;
+                _startLocation = transform.position;
                 if (_currentDestination is CollectionDestination)
                 {
                     _state = Collect;
@@ -47,6 +47,11 @@ namespace IdleMiner
                     _state = Deposit;
                 }
             }
+        }
+
+        private Vector3 NextPosition()
+        {
+            return Vector3.Lerp(_startLocation, _currentDestination.Position, _elapsedTime * Parameters.MoveSpeed);
         }
 
         private void Deposit()
@@ -59,11 +64,11 @@ namespace IdleMiner
         private void Collect()
         {
             _elapsedTime += Time.deltaTime;
-            if (_elapsedTime >= Parameters.WalkerCapacity / Parameters.MiningSpeed)
+            if (_elapsedTime >= Parameters.LoadCapacity / Parameters.LoadSpeed)
             {
                 _elapsedTime = 0;
                 _state = Move;
-                _load = Parameters.WalkerCapacity;
+                _load = Parameters.LoadCapacity;
                 _currentDestination = DepositDestination;
             }
         }
