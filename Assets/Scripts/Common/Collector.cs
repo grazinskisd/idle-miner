@@ -57,6 +57,7 @@ namespace IdleMiner
             {
                 _elapsedTime = 0;
                 _currentDestination.Storage.DepositLoad(_load);
+                _load = 0;
                 _collectionDestinationIndex = 0;
                 _currentDestination = CollectionDestinations[0];
                 _state = Move;
@@ -75,7 +76,7 @@ namespace IdleMiner
             {
                 _elapsedTime = 0;
                 _state = Move;
-                _load = _currentDestination.Storage.WithdrawLoad(Parameters.LoadCapacity);
+                _load += _currentDestination.Storage.WithdrawLoad(Parameters.LoadCapacity);
                 _currentDestination = GetNextDestinationAfterCollection();
             }
         }
