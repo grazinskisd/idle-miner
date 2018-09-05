@@ -16,6 +16,7 @@ namespace IdleMiner
         public void AddLiftFloor(Destination floorDestination)
         {
             _settings.CollectionDestinations.Add(floorDestination);
+            _liftView.transform.SetAsLastSibling();
         }
 
         protected override CollectorView GetCollectorView()
