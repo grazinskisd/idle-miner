@@ -12,7 +12,7 @@ namespace IdleMiner
             _canvas = GameObject.FindObjectOfType<Canvas>();
         }
 
-        public void AddToCanvas(Transform child)
+        public void AddToCanvas(Transform child, bool worldPositionStays = true)
         {
             child.SetParent(_canvas.transform);
         }

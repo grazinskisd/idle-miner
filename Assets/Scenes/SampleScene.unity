@@ -311,6 +311,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfbe056983a5a7b4bb227865474b2fe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MineshaftView: {fileID: 114203262628327440, guid: 9147811bd79fc434db5c21719d4455ea,
+    type: 2}
   MineView: {fileID: 114942308338818974, guid: 3fcd06382f177234ebe94cbe33975dce, type: 2}
   MineParameters: {fileID: 11400000, guid: 6cb7607bc9d70d6458c223ce501e0d97, type: 2}
 --- !u!114 &1186510699

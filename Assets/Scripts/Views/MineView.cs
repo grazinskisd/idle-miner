@@ -5,9 +5,9 @@ namespace IdleMiner
     public class MineView: MonoBehaviour
     {
         public Storage LiftStorage;
-        public Transform ListfShaft;
+        public Transform LiftShaft;
+        public GameObject LiftFloor;
         public Transform Mineshafts;
         public GameObject MineshaftPlaceholder;
-        public GameObject LiftFloor;
     }
 }

@@ -726,10 +726,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LiftStorage: {fileID: 114179632003644408}
-  ListfShaft: {fileID: 224944481596774734}
+  LiftShaft: {fileID: 224944481596774734}
+  LiftFloor: {fileID: 1303059740662166}
   Mineshafts: {fileID: 224944475315680968}
   MineshaftPlaceholder: {fileID: 1809325360803720}
-  LiftFloor: {fileID: 1303059740662166}
 --- !u!114 &114966587434498780
 MonoBehaviour:
   m_ObjectHideFlags: 1
