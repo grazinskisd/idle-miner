@@ -8,5 +8,6 @@ namespace IdleMiner
         public Destination LiftDepositFloor;
         public Transform Mineshafts;
         public GameObject MineshaftPlaceholder;
+        public Transform WarehouseContainer;
     }
 }

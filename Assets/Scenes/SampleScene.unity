@@ -317,6 +317,10 @@ MonoBehaviour:
   LiftView: {fileID: 114725970961646270, guid: b924d52109b90ab4f89f378ec5deb81b, type: 2}
   MinerView: {fileID: 114759961450319170, guid: d446c454357301f48a1742c8d9546511,
     type: 2}
+  WorkerView: {fileID: 114422186902652248, guid: f560a4485b8aa384e9ea9ea56806ebc4,
+    type: 2}
+  WarehouseView: {fileID: 114258830592438116, guid: ecc458d0c37fba44a90e5aa5b41d968d,
+    type: 2}
   MineParameters: {fileID: 11400000, guid: 6cb7607bc9d70d6458c223ce501e0d97, type: 2}
 --- !u!114 &1186510699
 MonoBehaviour:

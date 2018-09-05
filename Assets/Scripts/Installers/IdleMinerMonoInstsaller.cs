@@ -1,4 +1,3 @@
-using UnityEngine;
 using Zenject;
 
 namespace IdleMiner
@@ -9,15 +8,13 @@ namespace IdleMiner
         public MineView MineView;
         public LiftView LiftView;
         public MinerView MinerView;
+        public WorkerView WorkerView;
+        public WarehouseView WarehouseView;
         public MineParameters MineParameters;
 
         public override void InstallBindings()
         {
-            Container.BindInstance(MineView);
-            Container.BindInstance(MineParameters);
-            Container.BindInstance(MineshaftView);
-            Container.BindInstance(LiftView);
-            Container.BindInstance(MinerView);
+            BindInstances();
 
             Container.BindInterfacesAndSelfTo<TickManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<CanvasController>().AsSingle();
@@ -25,8 +22,22 @@ namespace IdleMiner
 
             Container.BindFactory<MineParameters, MineController, MineController.Factory>().AsSingle();
             Container.BindFactory<Parameters, MineshaftController, MineshaftController.Factory>().AsSingle();
+            Container.BindFactory<Parameters, WarehouseController, WarehouseController.Factory>().AsSingle();
+
             Container.BindFactory<CollectorSettings, LiftController, LiftController.Factory>().AsSingle();
+            Container.BindFactory<CollectorSettings, WorkerController, WorkerController.Factory>().AsSingle();
             Container.BindFactory<CollectorSettings, MinerController, MinerController.Factory>().AsSingle();
+        }
+
+        private void BindInstances()
+        {
+            Container.BindInstance(MineView);
+            Container.BindInstance(MineParameters);
+            Container.BindInstance(MineshaftView);
+            Container.BindInstance(LiftView);
+            Container.BindInstance(MinerView);
+            Container.BindInstance(WarehouseView);
+            Container.BindInstance(WorkerView);
         }
     }
 }

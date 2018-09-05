@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 namespace IdleMiner
@@ -9,6 +10,7 @@ namespace IdleMiner
         [Inject] private MineView _mineView;
         [Inject] private MineshaftController.Factory _mineshaftFactory;
         [Inject] private LiftController.Factory _liftFactory;
+        [Inject] private WarehouseController.Factory _warehouseFactory;
 
         private MineParameters _params;
         private MineshaftController[] _mineshafts = new MineshaftController[35];
@@ -16,18 +18,28 @@ namespace IdleMiner
         private LiftController _lift;
         private Destination _liftFloorViewPrototype;
 
+        private WarehouseController _warehouse;
+
         [Inject]
         private void Initialize(MineParameters parameters)
         {
             _params = parameters;
             CreateMineViewGameObject();
+            InitializeWarehouse();
             InitializeLift();
             AddFloors();
+        }
+
+        private void InitializeWarehouse()
+        {
+            _warehouse = _warehouseFactory.Create(_params.WarehouseParams);
+            _warehouse.SetParent(_mineView.WarehouseContainer, false);
         }
 
         private void InitializeLift()
         {
             _liftFloorViewPrototype = _mineView.LiftDepositFloor;
+            _mineView.LiftDepositFloor.Storage = _warehouse.GetResourceStorage();
             var settings = new CollectorSettings(_mineView.LiftDepositFloor, _params.LiftParams);
             _lift = _liftFactory.Create(settings);
             _lift.SetParent(_mineView.LiftShaft, false);
