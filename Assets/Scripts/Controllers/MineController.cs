@@ -6,6 +6,8 @@ namespace IdleMiner
 {
     public class MineController
     {
+        private const int MAXIMUM_MINES = 35;
+
         [Inject] private ICanvasController _canvas;
         [Inject] private MineView _mineView;
         [Inject] private MineshaftController.Factory _mineshaftFactory;
@@ -13,7 +15,7 @@ namespace IdleMiner
         [Inject] private WarehouseController.Factory _warehouseFactory;
 
         private MineParameters _params;
-        private MineshaftController[] _mineshafts = new MineshaftController[35];
+        private MineshaftController[] _mineshafts = new MineshaftController[MAXIMUM_MINES];
 
         private LiftController _lift;
         private Destination _liftFloorViewPrototype;
