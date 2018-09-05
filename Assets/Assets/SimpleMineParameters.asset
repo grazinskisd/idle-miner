@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: SimpleMineParameters
   m_EditorClassIdentifier: 
   WarehouseParams: {fileID: 11400000, guid: 169c11d3c2761454089c32e5031a9be9, type: 2}
-  LiftParams: {fileID: 11400000, guid: 169c11d3c2761454089c32e5031a9be9, type: 2}
+  LiftParams: {fileID: 11400000, guid: 3e5be845197b98545ac28b1a299e0ad1, type: 2}
   MineshaftParams:
   - {fileID: 11400000, guid: 169c11d3c2761454089c32e5031a9be9, type: 2}

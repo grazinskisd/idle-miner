@@ -1,8 +1,6 @@
-﻿using UnityEngine;
-
-namespace IdleMiner
+﻿namespace IdleMiner
 {
-    public class LiftView: MonoBehaviour
+    public class LiftView: CollectorView
     {
     }
 }

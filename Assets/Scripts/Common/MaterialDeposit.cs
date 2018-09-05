@@ -7,5 +7,10 @@
         {
             return capacity;
         }
+
+        public override int GetPossibleWithdrawal(int capacity)
+        {
+            return capacity;
+        }
     }
 }

@@ -23,8 +23,6 @@ namespace IdleMiner
             return _minerView;
         }
 
-        // Need to define a new Factory class
-        // because the old one would return BaseCollectorController
-        public new class Factory: PlaceholderFactory<CollectorSettings, MinerController> { }
+        public class Factory: PlaceholderFactory<CollectorSettings, MinerController> { }
     }
 }

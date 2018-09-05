@@ -18,10 +18,15 @@ namespace IdleMiner
 
         public virtual int WithdrawLoad(int capacity)
         {
-            int load = _currentLoad - _currentLoad % capacity;
+            int load = GetPossibleWithdrawal(capacity);
             _currentLoad -= load;
             UpdateTextDisplay();
             return load;
+        }
+
+        public virtual int GetPossibleWithdrawal(int capacity)
+        {
+            return capacity >= _currentLoad ? _currentLoad : capacity;
         }
 
         private void UpdateTextDisplay()

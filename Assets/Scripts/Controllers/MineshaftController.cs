@@ -14,12 +14,17 @@ namespace IdleMiner
         private List<MinerController> _miners;
 
         [Inject]
-        public void Initialize(Parameters parameters)
+        private void Initialize(Parameters parameters)
         {
             _params = parameters;
             _miners = new List<MinerController>();
             CreateMineshaftGameObject();
             CreteMiners();
+        }
+
+        public Storage GetResourceStorage()
+        {
+            return _mineshaftView.DepositDestination.Storage;
         }
 
         private void CreteMiners()

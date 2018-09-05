@@ -11,6 +11,7 @@ namespace IdleMiner
         private delegate void CollectorStateFunction();
 
         private int _load;
+        private int _loadInProgress;
         private float _elapsedTime;
         private CollectorStateFunction _state;
         private Destination _currentDestination;
@@ -39,11 +40,9 @@ namespace IdleMiner
 
         private void Move()
         {
-            _elapsedTime += Time.deltaTime;
             CollectorTransform.localPosition = NextPosition();
             if (CollectorTransform.localPosition == _currentDestination.Position)
             {
-                _elapsedTime = 0;
                 if (_currentDestination == _settings.DepositDestination)
                 {
                     _state = Deposit;
@@ -51,6 +50,9 @@ namespace IdleMiner
                 else
                 {
                     _state = Collect;
+                    var remainingCapacity = _settings.Parameters.LoadCapacity - _load;
+                    _loadInProgress = _currentDestination.Storage.GetPossibleWithdrawal(remainingCapacity);
+                    Debug.Log(GetCollectorView().name + " " + _loadInProgress);
                 }
             }
         }
@@ -72,12 +74,11 @@ namespace IdleMiner
         private void Collect()
         {
             _elapsedTime += Time.deltaTime;
-            var remainingCapacity = _settings.Parameters.LoadCapacity - _load;
-            if (_elapsedTime >= remainingCapacity / _settings.Parameters.LoadSpeed)
+            if (_elapsedTime >= (_loadInProgress / _settings.Parameters.LoadSpeed))
             {
                 _elapsedTime = 0;
                 _state = Move;
-                _load += _currentDestination.Storage.WithdrawLoad(remainingCapacity);
+                _load += _currentDestination.Storage.WithdrawLoad(_loadInProgress);
                 _currentDestination = GetNextDestinationAfterCollection();
             }
         }
@@ -97,7 +98,7 @@ namespace IdleMiner
 
         private Vector3 NextPosition()
         {
-            return Vector3.MoveTowards(CollectorTransform.localPosition, _currentDestination.Position, _elapsedTime * _settings.Parameters.MoveSpeed);
+            return Vector3.MoveTowards(CollectorTransform.localPosition, _currentDestination.Position, Time.deltaTime * _settings.Parameters.MoveSpeed);
         }
 
         protected virtual float GetDepositTime()
@@ -111,8 +112,12 @@ namespace IdleMiner
         }
 
         protected abstract CollectorView GetCollectorView();
+    }
 
-        public class Factory: PlaceholderFactory<CollectorSettings, BaseCollectorController> { }
+    public abstract class CollectorState
+    {
+        public abstract void Enter();
+        public abstract void Update();
     }
 
     public class CollectorSettings
