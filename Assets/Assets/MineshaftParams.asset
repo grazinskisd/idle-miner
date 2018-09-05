@@ -14,7 +14,7 @@ MonoBehaviour:
   Level: 1
   LoadCapacity: 1
   LoadSpeed: 1
-  MoveSpeed: 10
+  MoveSpeed: 100
   TransporterCount: 1
   LoadCapacityLevelMultiplier: 1
   LoadSpeedLevelMultiplier: 1

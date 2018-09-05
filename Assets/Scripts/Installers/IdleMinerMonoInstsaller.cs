@@ -21,7 +21,7 @@ namespace IdleMiner
 
             Container.BindInterfacesAndSelfTo<TickManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<CanvasController>().AsSingle();
-            Container.BindInterfacesAndSelfTo<IdleMinerController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<IdleMinerGameController>().AsSingle();
 
             Container.BindFactory<MineParameters, MineController, MineController.Factory>().AsSingle();
             Container.BindFactory<Parameters, MineshaftController, MineshaftController.Factory>().AsSingle();

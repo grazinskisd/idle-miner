@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 namespace IdleMiner
@@ -23,36 +21,46 @@ namespace IdleMiner
         {
             _params = parameters;
             CreateMineViewGameObject();
-            _liftFloorViewPrototype = _mineView.LiftDepositFloor;
+            InitializeLift();
             AddFloors();
+        }
+
+        private void InitializeLift()
+        {
+            _liftFloorViewPrototype = _mineView.LiftDepositFloor;
+            var settings = new CollectorSettings(_mineView.LiftDepositFloor, _params.LiftParams);
+            _lift = _liftFactory.Create(settings);
+            _lift.SetParent(_mineView.LiftShaft, false);
         }
 
         private void AddFloors()
         {
-            var _liftFloors = new List<Destination>();
-
-            Parameters[] mineshafts = _params.MineshaftParams;
             float floorHeight = _liftFloorViewPrototype.GetComponent<RectTransform>().sizeDelta.y;
-            for (int i = 0; i < mineshafts.Length; i++)
+            for (int i = 0; i < _params.MineshaftParams.Length; i++)
             {
-                var position = GetFloorPosition(i, floorHeight);
-
-                var mineshaftPlace = AddFloorPart(_mineView.MineshaftPlaceholder, _mineView.Mineshafts, position);
-                _mineshafts[i] = _mineshaftFactory.Create(mineshafts[i]);
-                _mineshafts[i].SetParent(mineshaftPlace.transform, false);
-
-                var liftFloor = AddFloorPart(_liftFloorViewPrototype.gameObject, _mineView.LiftShaft, position);
-                var floorDestiantion = liftFloor.GetComponent<Destination>();
-                floorDestiantion.Storage = _mineshafts[i].GetResourceStorage();
-                _liftFloors.Add(floorDestiantion);
+                CreateFloor(i, GetFloorPosition(i, floorHeight));
             }
+        }
 
-            var settings = new CollectorSettings();
-            settings.CollectionDestinations = _liftFloors;
-            settings.DepositDestination = _mineView.LiftDepositFloor;
-            settings.Parameters = _params.LiftParams;
-            _lift = _liftFactory.Create(settings);
-            _lift.SetParent(_mineView.LiftShaft, false);
+        private void CreateFloor(int i, Vector3 position)
+        {
+            CreateMineshaft(_params.MineshaftParams, i, position);
+            CreateLiftFloor(i, position);
+        }
+
+        private void CreateLiftFloor(int i, Vector3 position)
+        {
+            var liftFloor = AddFloorPart(_liftFloorViewPrototype.gameObject, _mineView.LiftShaft, position);
+            var floorDestiantion = liftFloor.GetComponent<Destination>();
+            floorDestiantion.Storage = _mineshafts[i].GetResourceStorage();
+            _lift.AddLiftFloor(floorDestiantion);
+        }
+
+        private void CreateMineshaft(Parameters[] mineshafts, int i, Vector3 position)
+        {
+            var mineshaftPlace = AddFloorPart(_mineView.MineshaftPlaceholder, _mineView.Mineshafts, position);
+            _mineshafts[i] = _mineshaftFactory.Create(mineshafts[i]);
+            _mineshafts[i].SetParent(mineshaftPlace.transform, false);
         }
 
         private GameObject AddFloorPart(GameObject part, Transform parent, Vector3 localPosition)

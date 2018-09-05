@@ -7,12 +7,15 @@ namespace IdleMiner
     {
         [Inject] private LiftView _liftView;
 
-        private Parameters _params;
-
         protected override void Initialize(CollectorSettings settings)
         {
             base.Initialize(settings);
             _liftView = GameObject.Instantiate(_liftView);
+        }
+
+        public void AddLiftFloor(Destination floorDestination)
+        {
+            _settings.CollectionDestinations.Add(floorDestination);
         }
 
         protected override CollectorView GetCollectorView()

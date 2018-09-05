@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 namespace IdleMiner
 {
     public abstract class BaseCollectorController : BaseController
     {
+        private const int DEPOSIT_INDEX = 0;
+
         [Inject] private ITickManager _tick;
 
         private delegate void CollectorStateFunction();
@@ -14,9 +15,13 @@ namespace IdleMiner
         private int _loadInProgress;
         private float _elapsedTime;
         private CollectorStateFunction _state;
-        private Destination _currentDestination;
         private int _collectionDestinationIndex;
-        private CollectorSettings _settings;
+        protected CollectorSettings _settings;
+
+        private Destination CurrentDestination
+        {
+            get { return _settings.CollectionDestinations[_collectionDestinationIndex]; }
+        }
 
         private Transform CollectorTransform
         {
@@ -28,77 +33,103 @@ namespace IdleMiner
         {
             _settings = settings;
             _state = Move;
-            _collectionDestinationIndex = 0;
-            _currentDestination = settings.CollectionDestinations[0];
+            _collectionDestinationIndex = 1;
             _tick.OnTick += Update;
         }
 
         private void Update()
         {
+            _elapsedTime += Time.deltaTime;
             _state();
         }
 
         private void Move()
         {
             CollectorTransform.localPosition = NextPosition();
-            if (CollectorTransform.localPosition == _currentDestination.Position)
+            if (CollectorTransform.localPosition == CurrentDestination.Position)
             {
-                if (_currentDestination == _settings.DepositDestination)
+                if (_collectionDestinationIndex == DEPOSIT_INDEX)
                 {
-                    _state = Deposit;
+                    UpdateStateTo(DepositLoad);
                 }
                 else
                 {
-                    _state = Collect;
-                    var remainingCapacity = _settings.Parameters.LoadCapacity - _load;
-                    _loadInProgress = _currentDestination.Storage.GetPossibleWithdrawal(remainingCapacity);
-                    Debug.Log(GetCollectorView().name + " " + _loadInProgress);
+                    SetLoadInProgress();
+                    UpdateStateTo(CollectNextLoad);
                 }
             }
         }
 
-        private void Deposit()
+        private void SetLoadInProgress()
         {
-            _elapsedTime += Time.deltaTime;
+            var remainingCapacity = _settings.Parameters.LoadCapacity - _load;
+            _loadInProgress = CurrentDestination.Storage.GetPossibleWithdrawal(remainingCapacity);
+        }
+
+        private void DepositLoad()
+        {
             if (_elapsedTime >= GetDepositTime())
             {
-                _elapsedTime = 0;
-                _currentDestination.Storage.DepositLoad(_load);
-                _load = 0;
-                _collectionDestinationIndex = 0;
-                _currentDestination = _settings.CollectionDestinations[0];
-                _state = Move;
+                DepositLoadToStorage();
+                GotToMoveState();
             }
         }
 
-        private void Collect()
+        private void DepositLoadToStorage()
         {
-            _elapsedTime += Time.deltaTime;
-            if (_elapsedTime >= (_loadInProgress / _settings.Parameters.LoadSpeed))
+            CurrentDestination.Storage.DepositLoad(_load);
+            _load = 0;
+        }
+
+        private void CollectNextLoad()
+        {
+            if (_elapsedTime >= GetCollectionTime())
             {
-                _elapsedTime = 0;
-                _state = Move;
-                _load += _currentDestination.Storage.WithdrawLoad(_loadInProgress);
-                _currentDestination = GetNextDestinationAfterCollection();
+                CollectLoadInProgress();
+                GotToMoveState();
             }
         }
 
-        private Destination GetNextDestinationAfterCollection()
+        private void GotToMoveState()
         {
-            _collectionDestinationIndex = (_collectionDestinationIndex + 1) % _settings.CollectionDestinations.Count;
-            if (_collectionDestinationIndex == 0 || _load == _settings.Parameters.LoadCapacity)
-            {
-                return _settings.DepositDestination;
-            }
-            else
-            {
-                return _settings.CollectionDestinations[_collectionDestinationIndex];
-            }
+            UpdateDestinationIndex();
+            UpdateStateTo(Move);
+        }
+
+        private float GetCollectionTime()
+        {
+            return _loadInProgress / _settings.Parameters.LoadSpeed;
+        }
+
+        private void CollectLoadInProgress()
+        {
+            _load += CurrentDestination.Storage.WithdrawLoad(_loadInProgress);
+        }
+
+        private void UpdateStateTo(CollectorStateFunction newState)
+        {
+            _elapsedTime = 0;
+            _state = newState;
+        }
+
+        private void UpdateDestinationIndex()
+        {
+            _collectionDestinationIndex = IsCollectorFullyLoaded() ? DEPOSIT_INDEX : GetNextWrappedIndex();
+        }
+
+        private int GetNextWrappedIndex()
+        {
+            return (_collectionDestinationIndex + 1) % _settings.CollectionDestinations.Count;
+        }
+
+        private bool IsCollectorFullyLoaded()
+        {
+            return _load == _settings.Parameters.LoadCapacity;
         }
 
         private Vector3 NextPosition()
         {
-            return Vector3.MoveTowards(CollectorTransform.localPosition, _currentDestination.Position, Time.deltaTime * _settings.Parameters.MoveSpeed);
+            return Vector3.MoveTowards(CollectorTransform.localPosition, CurrentDestination.Position, Time.deltaTime * _settings.Parameters.MoveSpeed);
         }
 
         protected virtual float GetDepositTime()
@@ -112,18 +143,5 @@ namespace IdleMiner
         }
 
         protected abstract CollectorView GetCollectorView();
-    }
-
-    public abstract class CollectorState
-    {
-        public abstract void Enter();
-        public abstract void Update();
-    }
-
-    public class CollectorSettings
-    {
-        public List<Destination> CollectionDestinations;
-        public Destination DepositDestination;
-        public Parameters Parameters;
     }
 }
