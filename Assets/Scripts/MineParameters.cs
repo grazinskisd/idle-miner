@@ -7,6 +7,6 @@ namespace IdleMiner
     {
         public Parameters WarehouseParams;
         public Parameters LiftParams;
-        public Parameters MineshaftParams;
+        public Parameters[] MineshaftParams;
     }
 }

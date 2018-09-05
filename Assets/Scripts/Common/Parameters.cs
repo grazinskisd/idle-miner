@@ -5,6 +5,7 @@ namespace IdleMiner
     [CreateAssetMenu(menuName = "IdleMiner/Parameters")]
     public class Parameters : ScriptableObject
     {
+        public int Level;
         public int LoadCapacity;
         public float LoadSpeed;
         public float MoveSpeed;
@@ -14,6 +15,15 @@ namespace IdleMiner
         public float LoadSpeedLevelMultiplier;
         public float MoveSpeedLevelMultiplier;
         public float TransporterCountLevelMultiplier;
+
+        public void UpdateToLevel(int level)
+        {
+            Level = level;
+            LoadCapacity = (int)(LoadCapacity * LoadCapacityLevelMultiplier * level);
+            LoadSpeed = LoadSpeed * LoadSpeedLevelMultiplier * level;
+            MoveSpeed = MoveSpeed * MoveSpeedLevelMultiplier * level;
+            TransporterCount = (int)(TransporterCount * TransporterCountLevelMultiplier * level);
+        }
 
         public Parameters GetParametersForLevel(int level)
         {

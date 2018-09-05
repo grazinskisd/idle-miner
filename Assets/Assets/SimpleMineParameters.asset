@@ -9,8 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65c92b99e1cd6004893792f188767055, type: 3}
-  m_Name: SimpleParameters
+  m_Name: SimpleMineParameters
   m_EditorClassIdentifier: 
-  WarehouseParams: {fileID: 0}
-  LiftParams: {fileID: 0}
-  MineshaftParams: {fileID: 11400000, guid: 169c11d3c2761454089c32e5031a9be9, type: 2}
+  WarehouseParams: {fileID: 11400000, guid: 169c11d3c2761454089c32e5031a9be9, type: 2}
+  LiftParams: {fileID: 11400000, guid: 169c11d3c2761454089c32e5031a9be9, type: 2}
+  MineshaftParams:
+  - {fileID: 11400000, guid: 169c11d3c2761454089c32e5031a9be9, type: 2}
