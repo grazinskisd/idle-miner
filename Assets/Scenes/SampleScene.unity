@@ -314,6 +314,9 @@ MonoBehaviour:
   MineshaftView: {fileID: 114203262628327440, guid: 9147811bd79fc434db5c21719d4455ea,
     type: 2}
   MineView: {fileID: 114942308338818974, guid: 3fcd06382f177234ebe94cbe33975dce, type: 2}
+  LiftView: {fileID: 114725970961646270, guid: b924d52109b90ab4f89f378ec5deb81b, type: 2}
+  MinerView: {fileID: 114759961450319170, guid: d446c454357301f48a1742c8d9546511,
+    type: 2}
   MineParameters: {fileID: 11400000, guid: 6cb7607bc9d70d6458c223ce501e0d97, type: 2}
 --- !u!114 &1186510699
 MonoBehaviour:

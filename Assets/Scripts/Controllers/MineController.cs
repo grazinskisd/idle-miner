@@ -33,15 +33,15 @@ namespace IdleMiner
             for (int i = 0; i < mineshafts.Length; i++)
             {
                 var position = GetFloorPosition(i, floorHeight);
-                var liftFloor = AddFloortPart(_mineView.LiftFloor, _mineView.LiftShaft, position);
+                var liftFloor = AddFloorPart(_mineView.LiftFloor.gameObject, _mineView.LiftShaft, position);
 
-                var mineshaftPlace = AddFloortPart(_mineView.MineshaftPlaceholder, _mineView.Mineshafts, position);
+                var mineshaftPlace = AddFloorPart(_mineView.MineshaftPlaceholder, _mineView.Mineshafts, position);
                 _mineshafts[i] = _mineshaftFactory.Create(mineshafts[i]);
                 _mineshafts[i].SetParent(mineshaftPlace.transform, false);
             }
         }
 
-        private GameObject AddFloortPart(GameObject part, Transform parent, Vector3 localPosition)
+        private GameObject AddFloorPart(GameObject part, Transform parent, Vector3 localPosition)
         {
             var partGO = GameObject.Instantiate(part);
             partGO.transform.SetParent(parent.transform, false);

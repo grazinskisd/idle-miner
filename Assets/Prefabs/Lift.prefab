@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224960878123357688}
   - component: {fileID: 222580339293598872}
-  - component: {fileID: 114069048588157290}
+  - component: {fileID: 114725970961646270}
   m_Layer: 5
   m_Name: Lift
   m_TagString: Untagged
@@ -62,22 +62,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114069048588157290
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1509665582094860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efad753b3e846824e8fc37401cd3f7d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollectionDestinations:
-  - {fileID: 0}
-  - {fileID: 0}
-  DepositDestination: {fileID: 0}
-  Parameters: {fileID: 11400000, guid: 169c11d3c2761454089c32e5031a9be9, type: 2}
 --- !u!114 &114080994289113486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,6 +122,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Lift
+--- !u!114 &114725970961646270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1509665582094860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce13aa8669bd17c428080b8887906891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &222378091089983400
 CanvasRenderer:
   m_ObjectHideFlags: 1

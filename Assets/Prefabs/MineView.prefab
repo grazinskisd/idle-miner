@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 222180771617112124}
   - component: {fileID: 114487504612972644}
   - component: {fileID: 114463974626049830}
+  - component: {fileID: 114619347995853562}
   m_Layer: 5
   m_Name: DepositFloor
   m_TagString: Untagged
@@ -647,6 +648,18 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &114619347995853562
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1303059740662166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2cad70df56491144b3425ecdde0cd16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Destination: {fileID: 114463974626049830}
 --- !u!114 &114664288219447196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -727,7 +740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LiftStorage: {fileID: 114179632003644408}
   LiftShaft: {fileID: 224944481596774734}
-  LiftFloor: {fileID: 1303059740662166}
+  LiftFloor: {fileID: 114619347995853562}
   Mineshafts: {fileID: 224944475315680968}
   MineshaftPlaceholder: {fileID: 1809325360803720}
 --- !u!114 &114966587434498780

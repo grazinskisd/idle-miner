@@ -6,7 +6,7 @@ namespace IdleMiner
     {
         public Storage LiftStorage;
         public Transform LiftShaft;
-        public GameObject LiftFloor;
+        public LiftFloorView LiftFloor;
         public Transform Mineshafts;
         public GameObject MineshaftPlaceholder;
     }
