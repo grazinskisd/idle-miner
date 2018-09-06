@@ -9,16 +9,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7bdbdd1d6c1c4545bed6ccbdbacf22f, type: 3}
-  m_Name: WarehouseParameters
+  m_Name: Mineshaft_5
   m_EditorClassIdentifier: 
-  NextLevelPrice: 1
+  NextLevelPrice: 50
   Level: 1
-  LoadCapacity: 20
-  LoadSpeed: 20
-  MoveSpeed: 200
+  LoadCapacity: 50
+  LoadSpeed: 50
+  MoveSpeed: 150
   TransporterCount: 1
   NextLevelPriceLevelMultiplier: 2
-  LoadCapacityLevelMultiplier: 1
-  LoadSpeedLevelMultiplier: 1
+  LoadCapacityLevelMultiplier: 0.1
+  LoadSpeedLevelMultiplier: 0.1
   MoveSpeedLevelMultiplier: 0.001
-  TransporterCountLevelMultiplier: 0.05
+  TransporterCountLevelMultiplier: 0.1

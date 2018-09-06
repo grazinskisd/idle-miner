@@ -17,3 +17,12 @@ MonoBehaviour:
   LiftParams: {fileID: 11400000, guid: 3e5be845197b98545ac28b1a299e0ad1, type: 2}
   MineshaftParams:
   - {fileID: 11400000, guid: 169c11d3c2761454089c32e5031a9be9, type: 2}
+  - {fileID: 11400000, guid: c5e65bad23530154f9113b327c2f5a39, type: 2}
+  - {fileID: 11400000, guid: 414b5d4ffef8739499f30d4c51df4865, type: 2}
+  - {fileID: 11400000, guid: 696a8272151a73547aeff594a29f27b5, type: 2}
+  - {fileID: 11400000, guid: 62ea5ed0a3839764d8abd23a715912f0, type: 2}
+  - {fileID: 11400000, guid: 0470ec15fd2a3d745af2a80ed99ca198, type: 2}
+  - {fileID: 11400000, guid: 175bee8b8183a89439897704ec0ec7cb, type: 2}
+  - {fileID: 11400000, guid: c14c2156cc4494740b6de1a63d74bd3e, type: 2}
+  - {fileID: 11400000, guid: adee2c423a88ced43a3869ce6bb4e450, type: 2}
+  - {fileID: 11400000, guid: 967898dc27d30ec4dba33f7e0e1939ec, type: 2}

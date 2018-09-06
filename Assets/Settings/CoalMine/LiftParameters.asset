@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bdbdd1d6c1c4545bed6ccbdbacf22f, type: 3}
   m_Name: LiftParameters
   m_EditorClassIdentifier: 
-  NextLevelPrice: 0
+  NextLevelPrice: 10
   Level: 1
-  LoadCapacity: 10
-  LoadSpeed: 10
+  LoadCapacity: 100
+  LoadSpeed: 100
   MoveSpeed: 200
   TransporterCount: 1
   NextLevelPriceLevelMultiplier: 1
