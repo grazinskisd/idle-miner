@@ -1,4 +1,4 @@
-Idle Miner Tycoon clone
+#Idle Miner Tycoon clone#
 
 Couple of notes on code architecture:  
 
