@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c92b99e1cd6004893792f188767055, type: 3}
+  m_Name: GoldMine
+  m_EditorClassIdentifier: 
+  MineName: GoldMine
+  UnlockPrice: 1000
+  WarehouseParams: {fileID: 11400000, guid: c70128cd0c4f67943bcec4677524de8f, type: 2}
+  LiftParams: {fileID: 11400000, guid: 3e5be845197b98545ac28b1a299e0ad1, type: 2}
+  MineshaftParams:
+  - {fileID: 11400000, guid: 169c11d3c2761454089c32e5031a9be9, type: 2}

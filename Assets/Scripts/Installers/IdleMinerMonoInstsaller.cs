@@ -11,6 +11,8 @@ namespace IdleMiner
         public WorkerView WorkerView;
         public WarehouseView WarehouseView;
         public GameSettingsScriptable GameParameters;
+        public MineSelectionWindowView MineSelectionWindowView;
+        public MineSelectionOptionView MineSelectionOptionView;
 
         public override void InstallBindings()
         {
@@ -38,6 +40,8 @@ namespace IdleMiner
             Container.BindInstance(MinerView);
             Container.BindInstance(WarehouseView);
             Container.BindInstance(WorkerView);
+            Container.BindInstance(MineSelectionWindowView);
+            Container.BindInstance(MineSelectionOptionView);
         }
     }
 }

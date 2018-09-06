@@ -14,7 +14,7 @@ namespace IdleMiner
 
         public void AddToCanvas(Transform child, bool worldPositionStays = true)
         {
-            child.SetParent(_canvas.transform);
+            child.SetParent(_canvas.transform, worldPositionStays);
         }
     }
 }

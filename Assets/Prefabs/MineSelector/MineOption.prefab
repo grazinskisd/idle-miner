@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114923679749244300}
   - component: {fileID: 114738153450317778}
   - component: {fileID: 114011902787437100}
+  - component: {fileID: 114641902081024210}
   m_Layer: 5
   m_Name: MineOption
   m_TagString: Untagged
@@ -66,6 +67,19 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &114641902081024210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1229980129917126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3097b57532fa02f4b843524e8d4132d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button: {fileID: 114738153450317778}
+  Text: {fileID: 114866504300407702}
 --- !u!114 &114738153450317778
 MonoBehaviour:
   m_ObjectHideFlags: 1
