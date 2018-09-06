@@ -14,3 +14,4 @@ MonoBehaviour:
   Mines:
   - {fileID: 11400000, guid: 6cb7607bc9d70d6458c223ce501e0d97, type: 2}
   - {fileID: 11400000, guid: bbcf2b51739181b4a95388f0c6c1d10e, type: 2}
+  - {fileID: 11400000, guid: 3f53683f02b9af04cab1d4bb2877f820, type: 2}

@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65c92b99e1cd6004893792f188767055, type: 3}
-  m_Name: GoldMine
+  m_Name: RubyMine
   m_EditorClassIdentifier: 
-  MineName: GoldMine
-  UnlockPrice: 1000
-  WarehouseParams: {fileID: 11400000, guid: cc8be7069b61c9741921cdbbcf01e2b3, type: 2}
-  LiftParams: {fileID: 11400000, guid: feeff7f2c802e2e4cac3ecf18cf9d058, type: 2}
+  MineName: RubyMine
+  UnlockPrice: 1000000
+  WarehouseParams: {fileID: 11400000, guid: b34daa563cab7fb4d9c9705785e350aa, type: 2}
+  LiftParams: {fileID: 11400000, guid: b746eaf146b5db94985a6d8a1dc16a27, type: 2}
   MineshaftParams:
-  - {fileID: 11400000, guid: 90d72e4b9ed231b4da24240def1188e5, type: 2}
+  - {fileID: 11400000, guid: 950c7ffdb4d5c574cb39c352947f5832, type: 2}
