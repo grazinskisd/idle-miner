@@ -1,5 +1,6 @@
 ﻿using Zenject;
 using UnityEngine;
+using System.IO;
 
 namespace IdleMiner
 {
@@ -12,5 +13,6 @@ namespace IdleMiner
         {
             _mineFactory.Create(_mineParameters);
         }
+
     }
 }

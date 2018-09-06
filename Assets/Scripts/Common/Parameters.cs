@@ -5,6 +5,7 @@ namespace IdleMiner
     [CreateAssetMenu(menuName = "IdleMiner/Parameters")]
     public class Parameters : ScriptableObject
     {
+        public int InstanceID;
         public int Level;
         public int LoadCapacity;
         public float LoadSpeed;
