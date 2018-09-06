@@ -29,6 +29,11 @@ namespace IdleMiner
             return capacity >= _currentLoad ? _currentLoad : capacity;
         }
 
+        public int GetCurrentLoad()
+        {
+            return _currentLoad;
+        }
+
         private void UpdateTextDisplay()
         {
             if (_loadDisplay != null)

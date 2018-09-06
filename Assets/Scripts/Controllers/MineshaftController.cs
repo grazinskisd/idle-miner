@@ -47,6 +47,22 @@ namespace IdleMiner
             return _mineshaftView.gameObject;
         }
 
+        public override void Pause()
+        {
+            for (int i = 0; i < _miners.Count; i++)
+            {
+                _miners[i].Pause();
+            }
+        }
+
+        public override void Unpause()
+        {
+            for (int i = 0; i < _miners.Count; i++)
+            {
+                _miners[i].Unpause();
+            }
+        }
+
         public class Factory: PlaceholderFactory<Parameters, MineshaftController> { }
     }
 }

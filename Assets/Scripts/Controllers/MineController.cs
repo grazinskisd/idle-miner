@@ -1,13 +1,11 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 namespace IdleMiner
 {
-    public class MineController
+    public class MineController: IMineController
     {
-        private const int MAXIMUM_MINES = 35;
-
         [Inject] private ICanvasController _canvas;
         [Inject] private MineView _mineView;
         [Inject] private MineshaftController.Factory _mineshaftFactory;
@@ -15,12 +13,14 @@ namespace IdleMiner
         [Inject] private WarehouseController.Factory _warehouseFactory;
 
         private MineParameters _params;
-        private MineshaftController[] _mineshafts = new MineshaftController[MAXIMUM_MINES];
+        private List<MineshaftController> _mineshafts = new List<MineshaftController>();
 
         private LiftController _lift;
         private Destination _liftFloorViewPrototype;
 
         private WarehouseController _warehouse;
+
+        public event MineControllerEventHandler OnExit;
 
         [Inject]
         private void Initialize(MineParameters parameters)
@@ -30,6 +30,7 @@ namespace IdleMiner
             InitializeWarehouse();
             InitializeLift();
             AddFloors();
+            DeactivateMine();
         }
 
         private void InitializeWarehouse()
@@ -73,8 +74,9 @@ namespace IdleMiner
         private void CreateMineshaft(Parameters[] mineshafts, int i, Vector3 position)
         {
             var mineshaftPlace = AddFloorPart(_mineView.MineshaftPlaceholder, _mineView.Mineshafts, position);
-            _mineshafts[i] = _mineshaftFactory.Create(mineshafts[i]);
-            _mineshafts[i].SetParent(mineshaftPlace.transform, false);
+            var mineshaft = _mineshaftFactory.Create(mineshafts[i]);
+            mineshaft.SetParent(mineshaftPlace.transform, false);
+            _mineshafts.Add(mineshaft);
         }
 
         private GameObject AddFloorPart(GameObject part, Transform parent, Vector3 localPosition)
@@ -94,10 +96,48 @@ namespace IdleMiner
         {
             _mineView = GameObject.Instantiate(_mineView);
             _canvas.AddToCanvas(_mineView.transform, false);
-            _mineView.transform.localScale = Vector3.one;
-            var rectTransform = _mineView.GetComponent<RectTransform>();
-            rectTransform.offsetMin = Vector2.zero;
-            rectTransform.offsetMax = Vector2.zero;
+            _mineView.ExitButton.onClick.AddListener(ProcessExit);
+        }
+
+        private void ProcessExit()
+        {
+            DeactivateMine();
+            if (OnExit != null)
+            {
+                OnExit();
+            }
+        }
+
+        private void DeactivateMine()
+        {
+            PauseMine();
+            _mineView.gameObject.SetActive(false);
+        }
+
+        private void PauseMine()
+        {
+            _lift.Pause();
+            _warehouse.Pause();
+            for (int i = 0; i < _mineshafts.Count; i++)
+            {
+                _mineshafts[i].Pause();
+            }
+        }
+
+        public void EnterMine()
+        {
+            _mineView.gameObject.SetActive(true);
+            UppauseMine();
+        }
+
+        private void UppauseMine()
+        {
+            _lift.Unpause();
+            _warehouse.Unpause();
+            for (int i = 0; i < _mineshafts.Count; i++)
+            {
+                _mineshafts[i].Unpause();
+            }
         }
 
         public class Factory : PlaceholderFactory<MineParameters, MineController> { }

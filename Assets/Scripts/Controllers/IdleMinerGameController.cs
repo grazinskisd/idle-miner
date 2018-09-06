@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Zenject;
 
 namespace IdleMiner
@@ -11,6 +12,8 @@ namespace IdleMiner
         [Inject] private MineSelectionWindowView _selectionWindowView;
         [Inject] private MineSelectionOptionView _selectionOptionView;
 
+        private List<MineController> _mines = new List<MineController>();
+
         public void Initialize()
         {
             CreateSelectionWindow();
@@ -21,6 +24,7 @@ namespace IdleMiner
         {
             for (int i = 0; i < _gameSettings.Mines.Length; i++)
             {
+                InitializeMine(i);
                 AddMineOption(i);
             }
         }
@@ -39,15 +43,27 @@ namespace IdleMiner
             option.Button.onClick.AddListener(() => LaunchMine(index));
         }
 
+        private void InitializeMine(int index)
+        {
+            var mine = _mineFactory.Create(_gameSettings.Mines[index].ToMinePrametersObject());
+            mine.OnExit += ShowSelectionView;
+            _mines.Add(mine);
+        }
+
         private void LaunchMine(int index)
         {
-            _mineFactory.Create(_gameSettings.Mines[index].ToMinePrametersObject());
+            _mines[index].EnterMine();
             HideSelectionView();
         }
 
         private void HideSelectionView()
         {
             _selectionWindowView.gameObject.SetActive(false);
+        }
+
+        private void ShowSelectionView()
+        {
+            _selectionWindowView.gameObject.SetActive(true);
         }
     }
 }

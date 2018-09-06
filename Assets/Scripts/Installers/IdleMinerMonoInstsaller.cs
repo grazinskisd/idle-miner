@@ -1,5 +1,10 @@
 using Zenject;
 
+/*
+ Normally this installer would not have so many public fields, as
+ an AssetLoader would be used to load and bind needed prefabs
+     */
+
 namespace IdleMiner
 {
     public class IdleMinerMonoInstsaller : MonoInstaller<IdleMinerMonoInstsaller>
@@ -13,6 +18,7 @@ namespace IdleMiner
         public GameSettingsScriptable GameParameters;
         public MineSelectionWindowView MineSelectionWindowView;
         public MineSelectionOptionView MineSelectionOptionView;
+        public WalletView WalletView;
 
         public override void InstallBindings()
         {
@@ -20,6 +26,7 @@ namespace IdleMiner
 
             Container.BindInterfacesAndSelfTo<TickManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<CanvasController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<WalletController>().AsSingle();
             Container.BindInterfacesAndSelfTo<IdleMinerGameController>().AsSingle();
 
             Container.BindFactory<MineParameters, MineController, MineController.Factory>().AsSingle();
@@ -42,6 +49,7 @@ namespace IdleMiner
             Container.BindInstance(WorkerView);
             Container.BindInstance(MineSelectionWindowView);
             Container.BindInstance(MineSelectionOptionView);
+            Container.BindInstance(WalletView);
         }
     }
 }

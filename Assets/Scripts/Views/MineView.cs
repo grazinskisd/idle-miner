@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace IdleMiner
 {
@@ -9,5 +10,6 @@ namespace IdleMiner
         public Transform Mineshafts;
         public GameObject MineshaftPlaceholder;
         public Transform WarehouseContainer;
+        public Button ExitButton;
     }
 }

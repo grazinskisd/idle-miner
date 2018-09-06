@@ -326,6 +326,8 @@ MonoBehaviour:
     type: 2}
   MineSelectionOptionView: {fileID: 114641902081024210, guid: 44b5b8ac20f36da4c992723c7592a084,
     type: 2}
+  WalletView: {fileID: 114718114915087606, guid: 8397196887d20c443ab47a25441d52d8,
+    type: 2}
 --- !u!114 &1186510699
 MonoBehaviour:
   m_ObjectHideFlags: 0

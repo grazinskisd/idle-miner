@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -8,6 +9,7 @@ namespace IdleMiner
     {
         [Inject] private WarehouseView _warehouseView;
         [Inject] private WorkerController.Factory _workerFactory;
+        [Inject] private IWalletController _walletController;
 
         private Parameters _params;
         private List<WorkerController> _workers;
@@ -40,6 +42,7 @@ namespace IdleMiner
         private void CreateWarehouseGameObject()
         {
             _warehouseView = GameObject.Instantiate(_warehouseView);
+            _warehouseView.DepositDestination.Storage = _walletController.WalletStorage;
         }
 
         protected override GameObject GetView()
@@ -48,5 +51,21 @@ namespace IdleMiner
         }
 
         public class Factory: PlaceholderFactory<Parameters, WarehouseController> { }
+
+        public override void Pause()
+        {
+            for (int i = 0; i < _workers.Count; i++)
+            {
+                _workers[i].Pause();
+            }
+        }
+
+        public override void Unpause()
+        {
+            for (int i = 0; i < _workers.Count; i++)
+            {
+                _workers[i].Unpause();
+            }
+        }
     }
 }

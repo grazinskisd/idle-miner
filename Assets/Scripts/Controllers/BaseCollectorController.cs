@@ -9,12 +9,11 @@ namespace IdleMiner
 
         [Inject] private ITickManager _tick;
 
-        private delegate void CollectorStateFunction();
-
         private int _load;
         private int _loadInProgress;
         private float _elapsedTime;
-        private CollectorStateFunction _state;
+        private State _state;
+        private State _lastState;
         private int _collectionDestinationIndex;
         protected CollectorSettings _settings;
 
@@ -32,7 +31,7 @@ namespace IdleMiner
         protected virtual void Initialize(CollectorSettings settings)
         {
             _settings = settings;
-            _state = Move;
+            _state = State.Move;
             _collectionDestinationIndex = 1;
             _tick.OnTick += Update;
         }
@@ -40,7 +39,31 @@ namespace IdleMiner
         private void Update()
         {
             _elapsedTime += Time.deltaTime;
-            _state();
+            switch (_state)
+            {
+                case State.Move:
+                    Move();
+                    break;
+                case State.Collect:
+                    CollectNextLoad();
+                    break;
+                case State.Deposit:
+                    DepositLoad();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public override void Pause()
+        {
+            _lastState = _state;
+            _state = State.Pause;
+        }
+
+        public override void Unpause()
+        {
+            _state = _lastState;
         }
 
         private void Move()
@@ -50,12 +73,12 @@ namespace IdleMiner
             {
                 if (_collectionDestinationIndex == DEPOSIT_INDEX)
                 {
-                    UpdateStateTo(DepositLoad);
+                    UpdateStateTo(State.Deposit);
                 }
                 else
                 {
                     SetLoadInProgress();
-                    UpdateStateTo(CollectNextLoad);
+                    UpdateStateTo(State.Collect);
                 }
             }
         }
@@ -93,7 +116,7 @@ namespace IdleMiner
         private void GotToMoveState()
         {
             UpdateDestinationIndex();
-            UpdateStateTo(Move);
+            UpdateStateTo(State.Move);
         }
 
         private float GetCollectionTime()
@@ -106,7 +129,7 @@ namespace IdleMiner
             _load += CurrentDestination.Storage.WithdrawLoad(_loadInProgress);
         }
 
-        private void UpdateStateTo(CollectorStateFunction newState)
+        private void UpdateStateTo(State newState)
         {
             _elapsedTime = 0;
             _state = newState;
@@ -143,5 +166,10 @@ namespace IdleMiner
         }
 
         protected abstract CollectorView GetCollectorView();
+
+        private enum State
+        {
+            Move, Collect, Deposit, Pause
+        }
     }
 }
