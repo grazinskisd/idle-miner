@@ -32,6 +32,7 @@ namespace IdleMiner
             Container.BindFactory<MineParameters, MineController, MineController.Factory>().AsSingle();
             Container.BindFactory<Parameters, MineshaftController, MineshaftController.Factory>().AsSingle();
             Container.BindFactory<Parameters, WarehouseController, WarehouseController.Factory>().AsSingle();
+            Container.BindFactory<Parameters, LiftShaftView, LiftShaftController, LiftShaftController.Factory>().AsSingle();
 
             Container.BindFactory<CollectorSettings, LiftController, LiftController.Factory>().AsSingle();
             Container.BindFactory<CollectorSettings, WorkerController, WorkerController.Factory>().AsSingle();

@@ -5,8 +5,7 @@ namespace IdleMiner
 {
     public class MineView: MonoBehaviour
     {
-        public Transform LiftShaft;
-        public Destination LiftDepositFloor;
+        public LiftShaftView LiftShaft;
         public Transform Mineshafts;
         public GameObject MineshaftPlaceholder;
         public Transform WarehouseContainer;

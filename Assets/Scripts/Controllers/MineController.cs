@@ -9,18 +9,16 @@ namespace IdleMiner
         [Inject] private ICanvasController _canvas;
         [Inject] private MineView _mineView;
         [Inject] private MineshaftController.Factory _mineshaftFactory;
-        [Inject] private LiftController.Factory _liftFactory;
+        [Inject] private LiftShaftController.Factory _liftFactory;
         [Inject] private WarehouseController.Factory _warehouseFactory;
+
+        public event MineControllerEventHandler OnExit;
 
         private MineParameters _params;
         private List<MineshaftController> _mineshafts = new List<MineshaftController>();
-
-        private LiftController _lift;
-        private Destination _liftFloorViewPrototype;
-
+        private LiftShaftController _lift;
+        private RectTransform _liftFloorPrototype;
         private WarehouseController _warehouse;
-
-        public event MineControllerEventHandler OnExit;
 
         [Inject]
         private void Initialize(MineParameters parameters)
@@ -42,15 +40,13 @@ namespace IdleMiner
 
         private void InitializeLift()
         {
-            _liftFloorViewPrototype = _mineView.LiftDepositFloor;
-            var settings = new CollectorSettings(_mineView.LiftDepositFloor, _params.LiftParams);
-            _lift = _liftFactory.Create(settings);
-            _lift.SetParent(_mineView.LiftShaft, false);
+            _lift = _liftFactory.Create(_params.LiftParams, _mineView.LiftShaft);
+            _liftFloorPrototype = _mineView.LiftShaft.DepositDestination.GetComponent<RectTransform>();
         }
 
         private void AddFloors()
         {
-            float floorHeight = _liftFloorViewPrototype.GetComponent<RectTransform>().sizeDelta.y;
+            float floorHeight = _liftFloorPrototype.sizeDelta.y;
             for (int i = 0; i < _params.MineshaftParams.Length; i++)
             {
                 CreateFloor(i, GetFloorPosition(i, floorHeight));
@@ -65,7 +61,7 @@ namespace IdleMiner
 
         private void CreateLiftFloor(int i, Vector3 position)
         {
-            var liftFloor = AddFloorPart(_liftFloorViewPrototype.gameObject, _mineView.LiftShaft, position);
+            var liftFloor = AddFloorPart(_liftFloorPrototype.gameObject, _mineView.LiftShaft.transform, position);
             var floorDestiantion = liftFloor.GetComponent<Destination>();
             floorDestiantion.Storage = _mineshafts[i].GetResourceStorage();
             _lift.AddLiftFloor(floorDestiantion);

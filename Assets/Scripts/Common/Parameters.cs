@@ -1,4 +1,4 @@
-﻿using System;
+﻿using UnityEngine;
 
 namespace IdleMiner
 {
@@ -25,12 +25,15 @@ namespace IdleMiner
         public void IncrementLevel()
         {
             SetTemporaryParameters();
+
             Level++;
+            // Update using floats, to not loose fractions when casting back to int
             _nextLevelPrice += NextLevelPriceLevelMultiplier * _nextLevelPrice;
             _loadCapacity += LoadCapacityLevelMultiplier * _loadCapacity;
+            _transporterCount += TransporterCountLevelMultiplier * _transporterCount;
+
             LoadSpeed += LoadSpeedLevelMultiplier * LoadSpeed;
             MoveSpeed += MoveSpeedLevelMultiplier * MoveSpeed;
-            _transporterCount += TransporterCountLevelMultiplier * _transporterCount;
 
             NextLevelPrice = (int)_nextLevelPrice;
             LoadCapacity = (int)_loadCapacity;
