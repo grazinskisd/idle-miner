@@ -29,7 +29,7 @@ namespace IdleMiner
         private void Update()
         {
             bool canLevelUp = _walletController.WalletStorage.GetCurrentLoad() >= _params.NextLevelPrice;
-            _mineshaftView.LevelUpButton.enabled = canLevelUp;
+            _mineshaftView.LevelUpButton.interactable = canLevelUp;
         }
 
         public Storage GetResourceStorage()

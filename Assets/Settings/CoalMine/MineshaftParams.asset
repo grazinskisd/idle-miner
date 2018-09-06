@@ -11,13 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bdbdd1d6c1c4545bed6ccbdbacf22f, type: 3}
   m_Name: MineshaftParams
   m_EditorClassIdentifier: 
-  NextLevelPrice: 0
+  NextLevelPrice: 1
   Level: 1
   LoadCapacity: 10
   LoadSpeed: 10
   MoveSpeed: 200
   TransporterCount: 1
-  NextLevelPriceLevelMultiplier: 0
+  NextLevelPriceLevelMultiplier: 1
   LoadCapacityLevelMultiplier: 0.1
   LoadSpeedLevelMultiplier: 0.1
   MoveSpeedLevelMultiplier: 0.001
