@@ -37,12 +37,12 @@ namespace IdleMiner
         {
             _warehouse = _warehouseFactory.Create(_params.WarehouseParams);
             _warehouse.SetParent(_mineView.WarehouseContainer, false);
+            _warehouse.SetCollectionStorage(_mineView.LiftDepositSorage);
         }
 
         private void InitializeLift()
         {
             _liftFloorViewPrototype = _mineView.LiftDepositFloor;
-            _mineView.LiftDepositFloor.Storage = _warehouse.GetResourceStorage();
             var settings = new CollectorSettings(_mineView.LiftDepositFloor, _params.LiftParams);
             _lift = _liftFactory.Create(settings);
             _lift.SetParent(_mineView.LiftShaft, false);

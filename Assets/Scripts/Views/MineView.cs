@@ -11,5 +11,6 @@ namespace IdleMiner
         public GameObject MineshaftPlaceholder;
         public Transform WarehouseContainer;
         public Button ExitButton;
+        public Storage LiftDepositSorage;
     }
 }
