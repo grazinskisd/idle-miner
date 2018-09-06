@@ -26,7 +26,7 @@ namespace IdleMiner
         {
             SetTemporaryParameters();
             Level++;
-            _nextLevelPrice += LoadCapacityLevelMultiplier * _nextLevelPrice;
+            _nextLevelPrice += NextLevelPriceLevelMultiplier * _nextLevelPrice;
             _loadCapacity += LoadCapacityLevelMultiplier * _loadCapacity;
             LoadSpeed += LoadSpeedLevelMultiplier * LoadSpeed;
             MoveSpeed += MoveSpeedLevelMultiplier * MoveSpeed;

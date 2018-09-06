@@ -4,91 +4,39 @@ using System.Collections.Generic;
 
 namespace IdleMiner
 {
-    public class MineshaftController: BaseController
+    public class MineshaftController: BaseFacilityController
     {
-        private const string LVL_BUTTON_FORMAT = "Lvl {0}";
-
         [Inject] private MineshaftView _mineshaftView;
         [Inject] private MinerController.Factory _minerFactory;
-        [Inject] private IWalletController _walletController;
-        [Inject] private ITickManager _tick;
 
-        private Parameters _params;
-        private List<MinerController> _miners;
-
-        [Inject]
-        private void Initialize(Parameters parameters)
-        {
-            _params = parameters;
-            _miners = new List<MinerController>();
-            CreateMineshaftGameObject();
-            CreteMiners();
-            _tick.OnTick += Update;
-        }
-
-        private void Update()
-        {
-            bool canLevelUp = _walletController.WalletStorage.GetCurrentLoad() >= _params.NextLevelPrice;
-            _mineshaftView.LevelUpButton.interactable = canLevelUp;
-        }
+        private List<BaseCollectorController> _miners = new List<BaseCollectorController>();
 
         public Storage GetResourceStorage()
         {
             return _mineshaftView.DepositDestination.Storage;
         }
 
-        private void CreteMiners()
+        protected override void AddCollector()
         {
-            for (int i = 0; i < _params.TransporterCount; i++)
-            {
-                AddMiner();
-            }
-        }
-
-        private void AddMiner()
-        {
-            var settings = new CollectorSettings(_mineshaftView.DepositDestination, _mineshaftView.MiningDestination, _params);
+            var settings = new CollectorSettings(_mineshaftView.DepositDestination, _mineshaftView.CollectionDestination, _params);
             var miner = _minerFactory.Create(settings);
             miner.SetParent(_mineshaftView.transform, false);
             _miners.Add(miner);
         }
 
-        private void CreateMineshaftGameObject()
+        protected override void CreateFacilityView()
         {
             _mineshaftView = GameObject.Instantiate(_mineshaftView);
-            _mineshaftView.LevelUpButton.onClick.AddListener(LevelUp);
         }
 
-        private void LevelUp()
+        protected override List<BaseCollectorController> GetCollectors()
         {
-            _walletController.WalletStorage.WithdrawLoad(_params.NextLevelPrice);
-            _params.IncrementLevel();
-            _mineshaftView.LevelUpButtonText.text = string.Format(LVL_BUTTON_FORMAT, _params.Level);
-            if(_miners.Count < _params.TransporterCount)
-            {
-                AddMiner();
-            }
+            return _miners;
         }
 
-        protected override GameObject GetView()
+        protected override FacilityView GetFacilityView()
         {
-            return _mineshaftView.gameObject;
-        }
-
-        public override void Pause()
-        {
-            for (int i = 0; i < _miners.Count; i++)
-            {
-                _miners[i].Pause();
-            }
-        }
-
-        public override void Unpause()
-        {
-            for (int i = 0; i < _miners.Count; i++)
-            {
-                _miners[i].Unpause();
-            }
+            return _mineshaftView;
         }
 
         public class Factory: PlaceholderFactory<Parameters, MineshaftController> { }

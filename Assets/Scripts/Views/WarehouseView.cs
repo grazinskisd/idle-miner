@@ -1,10 +1,6 @@
-﻿using UnityEngine;
-
-namespace IdleMiner
+﻿namespace IdleMiner
 {
-    public class WarehouseView: MonoBehaviour
+    public class WarehouseView: FacilityView
     {
-        public Destination DepositDestination;
-        public Destination CollectionDestination;
     }
 }

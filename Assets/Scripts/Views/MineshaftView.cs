@@ -1,13 +1,6 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-
-namespace IdleMiner
+﻿namespace IdleMiner
 {
-    public class MineshaftView: MonoBehaviour
+    public class MineshaftView: FacilityView
     {
-        public Destination MiningDestination;
-        public Destination DepositDestination;
-        public Button LevelUpButton;
-        public Text LevelUpButtonText;
     }
 }

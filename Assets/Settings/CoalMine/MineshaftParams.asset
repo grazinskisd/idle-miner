@@ -17,7 +17,7 @@ MonoBehaviour:
   LoadSpeed: 10
   MoveSpeed: 200
   TransporterCount: 1
-  NextLevelPriceLevelMultiplier: 1
+  NextLevelPriceLevelMultiplier: 2
   LoadCapacityLevelMultiplier: 0.1
   LoadSpeedLevelMultiplier: 0.1
   MoveSpeedLevelMultiplier: 0.001
