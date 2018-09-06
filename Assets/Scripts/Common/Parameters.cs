@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-
-namespace IdleMiner
+﻿namespace IdleMiner
 {
-    [CreateAssetMenu(menuName = "IdleMiner/Parameters")]
-    public class Parameters : ScriptableObject
+    [System.Serializable]
+    public class Parameters
     {
         public int InstanceID;
         public int Level;
@@ -24,16 +22,6 @@ namespace IdleMiner
             LoadSpeed = LoadSpeed * LoadSpeedLevelMultiplier * level;
             MoveSpeed = MoveSpeed * MoveSpeedLevelMultiplier * level;
             TransporterCount = (int)(TransporterCount * TransporterCountLevelMultiplier * level);
-        }
-
-        public Parameters GetParametersForLevel(int level)
-        {
-            Parameters newParamms = ScriptableObject.CreateInstance<Parameters>();
-            newParamms.LoadCapacity = (int)(LoadCapacity * LoadCapacityLevelMultiplier * level);
-            newParamms.LoadSpeed = LoadSpeed * LoadSpeedLevelMultiplier * level;
-            newParamms.MoveSpeed = MoveSpeed * MoveSpeedLevelMultiplier * level;
-            newParamms.TransporterCount = (int)(TransporterCount * TransporterCountLevelMultiplier *level);
-            return newParamms;
         }
     }
 }

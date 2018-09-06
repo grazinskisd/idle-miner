@@ -9,7 +9,7 @@ namespace IdleMiner
         private const string PATH_FORMAT = "{0}/StreamingAssets/{1}";
         private const string FILENAME_FORMAT = "{0}.json";
 
-        public void SaveParameters(MineParameters parameters)
+        public void SaveParameters(MineParametersScriptalbe parameters)
         {
             var json = JsonUtility.ToJson(parameters);
             WriteDataToFile(json, string.Format(FILENAME_FORMAT, parameters.MineName));

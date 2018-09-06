@@ -8,7 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09be812dfefc6bc41b35ade2b649901d, type: 3}
+  m_Script: {fileID: 11500000, guid: b7bdbdd1d6c1c4545bed6ccbdbacf22f, type: 3}
   m_Name: LiftParameters
   m_EditorClassIdentifier: 
   Level: 1

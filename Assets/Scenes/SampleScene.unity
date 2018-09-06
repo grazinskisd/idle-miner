@@ -321,7 +321,7 @@ MonoBehaviour:
     type: 2}
   WarehouseView: {fileID: 114258830592438116, guid: ecc458d0c37fba44a90e5aa5b41d968d,
     type: 2}
-  MineParameters: {fileID: 11400000, guid: 6cb7607bc9d70d6458c223ce501e0d97, type: 2}
+  GameParameters: {fileID: 11400000, guid: 4409a5a47bea34a44b7cd8301675f8ac, type: 2}
 --- !u!114 &1186510699
 MonoBehaviour:
   m_ObjectHideFlags: 0

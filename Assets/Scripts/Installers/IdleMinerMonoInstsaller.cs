@@ -10,7 +10,7 @@ namespace IdleMiner
         public MinerView MinerView;
         public WorkerView WorkerView;
         public WarehouseView WarehouseView;
-        public MineParameters MineParameters;
+        public GameSettingsScriptable GameParameters;
 
         public override void InstallBindings()
         {
@@ -32,7 +32,7 @@ namespace IdleMiner
         private void BindInstances()
         {
             Container.BindInstance(MineView);
-            Container.BindInstance(MineParameters);
+            Container.BindInstance(GameParameters);
             Container.BindInstance(MineshaftView);
             Container.BindInstance(LiftView);
             Container.BindInstance(MinerView);
