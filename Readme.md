@@ -1,6 +1,7 @@
 Idle Miner Tycoon clone
 
 Couple of notes on code architecture:  
+
 * Zenject plugin is used for dependency injection  
 * Following on some things learned from "Clean Code" (https://g.co/kgs/B8Rprn):  
 	* Comments are kept to a minimum, compensated by descriptive class, function and variable names  
@@ -11,6 +12,7 @@ Couple of notes on code architecture:
 * Due to time constraints and minimal asset requirements, Resources and AssetBundles are not used (AssetBundles would be advisable otherwise)  
   
 Features:  
+
 1. Multiple mines, that are configurable with ScriptableObject settings  
 2. Lift, warehouse and mineshaft facilities in each mine. These are also configured using ScriptableObject settings  
 3. Leveling up of Lifts, warehouses and mineshafts  
